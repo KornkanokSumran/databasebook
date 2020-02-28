@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+    {% if form.errors %}
+    <p> someting </p>
+    {% endif %}
+
+    {% if next %}
+    <p>access</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <p>Username : {{ form.username}}</p>
+        <p>Password : {{ form.password}}</p>
+
+        <p><input type="submit" = value="login"></p>
+        <input type="hidden" name="next" value="{{ next }}">
+        <p><input type="submit" = value="newuser" href="{% url 'books:book_list'%}"></p>
+        <input type="hidden" name="new" value="{{ new }}">
+    </form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>PUBLISHER!</title>
+</head>
+
+<body>
+    <h1 align=center frontsize=150%>PUBLISHER</h1>
+    <form action= "{% url 'books:search_p' %}" method="post">
+        {% csrf_token %}
+        Publisher :
+        <input type="text" name="name">   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <input type="submit" value="Search">
+    </form>
+    <br>
+    {{a}}
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+        {% for p in name %}
+            <tr>
+                <td>{{p.name}}</td>
+                <td>{{p.phone}}</td>
+                <td>{{p.address}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+</html>
+
+
