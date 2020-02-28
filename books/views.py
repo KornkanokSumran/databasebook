@@ -25,24 +25,18 @@ def Author_list(request):
     return render(request, 'books/author_list.html', {'authors':authors})
 
 def search_books (request):
-    # a = Book.written.objects.all()
     try:
         keyword_b = request.POST['name']
         keyword_y = request.POST['year']
-        namekeword = Book.objects.filter(title__startswith = keyword_b.lower(),published_date__year = keyword_y)
+        namekeword = Book.objects.filter(title__istartswith = keyword_b.capitalize(),published_date__year = keyword_y)
+          
     except:
-        namekeword = Book.objects.filter(title__startswith = keyword_b.lower())
+        namekeword = Book.objects.filter(title__istartswith = keyword_b.capitalize())
         context = {'lstname':namekeword}
-        return  render(request,'books/book_list.html',context)
-    else:
+        # return  render(request,'books/book_list.html',context)
+    else:        
         context = {'lstname':namekeword}
-        return  render(request,'books/book_list.html',context)
-
-    # filters = []
-    # filters.append(models.Q(
-    #     written__author_name=author_name,
-    # ))
-    # queryset = Book.objects.filter(reduce(operator.iand, filters))
+    return  render(request,'books/book_list.html',context)
 
 def search_publisher (request):
     keyword_p = request.POST['name']
@@ -58,13 +52,3 @@ def search_author (request):
     print(namekeword)
     return  render(request,'books/author_list.html',context)
 
-def show_book(request):
-    all_books = Book.objects.order_by('id')
-    authors = Author.objects.all()
-    publishers = Publisher.objects.all()
-    context = {
-        'all_books' : all_books,
-        'authors' : authors,
-        'publishers' : publishers
-    }
-    return render(request, 'home.html', context)

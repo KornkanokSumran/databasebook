@@ -27,7 +27,6 @@
       <input type="submit" value="Search">        
     </form>
     <br>
-    
     <table class="table table-hover">
         <tr>
             <th>ISBN</th>
@@ -36,13 +35,13 @@
             <th>Publisher</th>
             <th>Author</th>
         </tr>
-
         {% for b in lstname %}
             <tr>
               <td>{{b.isbn}}</td>
               <td>{{b.title}}</td>
               <td>{{b.published_date}}</td>
               <td>{{b.publisher}}</td>
+              <td>{{b.written.all.0.author_name}}</td>
         {% endfor %}
 
     </table>

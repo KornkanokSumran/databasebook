@@ -26,11 +26,19 @@
         <tr>
             <th>Name</th>
             <th>Date of Birth</th>
+            <th>Book</th>
         </tr>
         {% for a in name %}
         <tr>
             <td>{{a.author_name}}</td>
             <td>{{a.date_of_birth}}</td>
+            <td>
+            {% for i in a.books.all %}
+            <ul>
+                <li>{{i.title}}</li>
+            </ul>
+            {% endfor %}
+            </td> 
         </tr>
         {% endfor %}
     </table>
